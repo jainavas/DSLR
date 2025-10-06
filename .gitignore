@@ -1,0 +1,5 @@
+.vscode/
+venv/
+dlsr_subject.pdf
+dataset_test.csv
+dataset_train.csv

@@ -1,13 +1,24 @@
-import pandas as pd  # Manejo de tablas (como struct con arrays)
-import matplotlib.pyplot as plt  # Dibujar gráficos (como usar una librería gráfica en C)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    histogram.py                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jainavas <jainavas@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/07 18:26:14 by jainavas          #+#    #+#              #
+#    Updated: 2025/10/07 18:27:48 by jainavas         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+import pandas as pd
+import matplotlib.pyplot as plt
 import sys
 
 def plot_histogram(filename):
     # Leer CSV
-    df = pd.read_csv(filename)  # FILE *fp = fopen(); parsear líneas...
+    df = pd.read_csv(filename)
     
     # Obtener nombres de materias (columnas numéricas, excluyendo Index, Birthday...)
-    # df.columns es como char *column_names[] en C
     courses = [col for col in df.columns if df[col].dtype in ['float64', 'int64'] and col != 'Index']
     # List comprehension: filtra columnas que sean números
     
@@ -19,7 +30,7 @@ def plot_histogram(filename):
     
     # plt.subplots crea una cuadrícula de gráficos
     # figsize=(ancho, alto) en pulgadas
-    fig, axes = plt.subplots(rows, cols, figsize=(20, rows * 7))  # malloc de ventanas gráficas
+    fig, axes = plt.subplots(rows, cols, figsize=(20, rows * 7))
     axes = axes.flatten()  # Convertir matriz 2D en array 1D para iterar fácil
     
     # Definir colores para cada casa
@@ -28,11 +39,11 @@ def plot_histogram(filename):
         'Slytherin': 'green',
         'Ravenclaw': 'blue',
         'Hufflepuff': 'yellow'
-    }  # std::map<string, string> en C++
+    }
     
     # Para cada materia
-    for idx, course in enumerate(courses):  # enumerate = for (int i = 0; i < len; i++)
-        ax = axes[idx]  # Puntero al subplot actual
+    for idx, course in enumerate(courses):
+        ax = axes[idx]
         
         # Para cada casa, dibujar histograma
         for house in colors.keys():  # Iterar sobre las claves del diccionario
@@ -42,13 +53,12 @@ def plot_histogram(filename):
             # df[boolean_array] filtra filas donde es True
             
             # Eliminar NaN (valores faltantes)
-            house_data = house_data.dropna()  # Filtrar != NULL
+            house_data = house_data.dropna()
             
             # Dibujar histograma
             # alpha=0.5 = transparencia (para que se vean superpuestos)
             # bins=20 = número de "barras" en el histograma
             ax.hist(house_data, bins=20, alpha=0.5, label=house, color=colors[house])
-            # Similar a llamar a una función de dibujo en C con SDL/OpenGL
         
         ax.set_title(course)  # Título del gráfico (como poner texto en ventana)
         ax.set_xlabel('Score')  # Etiqueta eje X
@@ -64,8 +74,8 @@ def plot_histogram(filename):
     plt.show()  # Mostrar ventana (como un bucle de eventos en GUI)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:  # argc != 2 en C
+    if len(sys.argv) != 2:
         print("Usage: python histogram.py <dataset.csv>")
-        sys.exit(1)  # return 1
+        sys.exit(1)
     
-    plot_histogram(sys.argv[1])  # argv[1]
+    plot_histogram(sys.argv[1])

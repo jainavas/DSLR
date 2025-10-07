@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    pair_plot.py                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jainavas <jainavas@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/07 18:23:32 by jainavas          #+#    #+#              #
+#    Updated: 2025/10/07 18:24:19 by jainavas         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import pandas as pd
-import seaborn as sns  # Wrapper de matplotlib para gráficos más bonitos
+import seaborn as sns
 import matplotlib.pyplot as plt
 import sys
 
@@ -36,15 +48,15 @@ def plot_pair_plot(filename):
         diag_kws={'alpha': 0.7}  # Opciones para diagonales
     )
     g.figure.subplots_adjust(
-        hspace=0.35,       # Espacio vertical - AUMENTA ESTO
-        wspace=0.35,       # Espacio horizontal - AUMENTA ESTO
+        hspace=0.35,       # Espacio vertical
+        wspace=0.35,       # Espacio horizontal
         top=0.95,
         bottom=0.05,
         left=0.05,
         right=0.98
     )
     
-    plt.suptitle('Pair Plot - Feature Relationships', y=1.01)  # Super título (arriba de todo)
+    plt.suptitle('Pair Plot - Feature Relationships', y=1.01)
     plt.tight_layout(pad = 3.0)
     plt.show()
 

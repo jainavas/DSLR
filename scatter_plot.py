@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    scatter_plot.py                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jainavas <jainavas@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/07 18:26:04 by jainavas          #+#    #+#              #
+#    Updated: 2025/10/07 18:26:07 by jainavas         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
@@ -17,12 +29,12 @@ def plot_scatter(filename):
     numeric_df = df[courses].dropna()  # Filtrar solo columnas numéricas sin NaN
     
     # Encontrar el par con mayor correlación (excluyendo diagonal)
-    max_corr = 0  # double max_corr = 0.0
-    best_pair = (None, None)  # tuple (puntero a dos strings en C)
+    max_corr = 0
+    best_pair = (None, None)
     
     # Comparar todas las combinaciones de materias
-    for i in range(len(courses)):  # for (int i = 0; i < len; i++)
-        for j in range(i + 1, len(courses)):  # for (int j = i+1; j < len; j++)
+    for i in range(len(courses)):
+        for j in range(i + 1, len(courses)):
             course1 = courses[i]
             course2 = courses[j]
             
@@ -38,7 +50,7 @@ def plot_scatter(filename):
             
             # Calcular correlación de Pearson manualmente
             # r = Σ((x - mean_x)(y - mean_y)) / sqrt(Σ(x - mean_x)² * Σ(y - mean_y)²)
-            x = data1[common_indices].values  # Convertir a array numpy (double* en C)
+            x = data1[common_indices].values
             y = data2[common_indices].values
             
             mean_x = np.mean(x)  # Media de x
@@ -60,7 +72,7 @@ def plot_scatter(filename):
                 best_pair = (course1, course2)
     
     # Dibujar scatter plot del par más correlacionado
-    course1, course2 = best_pair  # Desempaquetado de tuple (como pair en C++)
+    course1, course2 = best_pair
     
     # Colores por casa
     colors = {
@@ -86,7 +98,6 @@ def plot_scatter(filename):
         # s=50 = tamaño de puntos
         # alpha=0.6 = transparencia
         plt.scatter(x[common], y[common], label=house, color=colors[house], s=50, alpha=0.6)
-        # Como plotear puntos con OpenGL/SDL
     
     plt.xlabel(course1)  # Etiqueta eje X
     plt.ylabel(course2)  # Etiqueta eje Y

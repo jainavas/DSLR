@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    logreg_train.py                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jainavas <jainavas@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/07 18:23:24 by jainavas          #+#    #+#              #
+#    Updated: 2025/10/07 18:23:26 by jainavas         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import pandas as pd
 import numpy as np
 import sys
@@ -118,7 +130,7 @@ def train(filename):
     all_theta = train_one_vs_all(
         X_norm, y, houses,
         alpha=0.01,
-        num_iterations=2000
+        num_iterations=5000
     )
     
     # Guardar modelo
